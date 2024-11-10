@@ -1,4 +1,27 @@
-body {
-  font-family: Arial, sans-serif;
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.pagina {
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+}
 
+.navbar {
+  background-color: black;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-size: 32px;
+}
+
+.navbar-nav .nav-link {
+  color: grey !important;
+  font-size: 18px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: white !important;
 }
