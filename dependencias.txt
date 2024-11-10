@@ -1,0 +1,8 @@
+npm init -y  --no siemrpe
+npm install express mysql2 --PARA MYSQL
+npm install oracledb --PARA ORACLE
+npm install --save-dev webpack webpack-cli webpack-dev-middleware
+npm install --save-dev babel-loader @babel/core @babel/preset-env
+npm install --save-dev css-loader style-loader
+--correr el servidor
+node src/server.js
