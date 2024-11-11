@@ -1,11 +1,10 @@
 const oracledb = require('oracledb');
 const db = require('../db');
 
-// Obtener todas las reservas de la base de datos en Oracle
+// Obtener las reservas
 async function getReserva(callback) {
   try {
     const connection = await db(); // Esto asume que `db` es una función asíncrona que devuelve la conexión
-    
     const query = `
       SELECT id_reserva, modelo, fecha_reserva, fecha_inicio, fecha_fin, 
              punto_recogida, punto_entrega, c.estado,a.id_est_reserva, img_vehiculo, placa 
@@ -13,18 +12,17 @@ async function getReserva(callback) {
       INNER JOIN vehiculo b ON a.id_vehiculo = b.id_vehiculo 
       INNER JOIN estado_reserva c ON c.id_est_reserva = a.id_est_reserva
     `;
-    
     const result = await connection.execute(query, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     await connection.close();
-
     callback(null, result.rows);
+
   } catch (err) {
     console.error('Error al obtener las reservas:', err);
     callback(err, null);
   }
 }
 
-// Actualizar el estado de una reserva a "cancelada"
+// Actualizar el estado de una reserva a "Pendiente"
 async function cancelarReserva(id, callback) {
   try {
     const connection = await db();

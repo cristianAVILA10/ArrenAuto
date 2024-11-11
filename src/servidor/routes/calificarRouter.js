@@ -5,7 +5,6 @@ const calificarModel = require('../models/calificarModel');
 // Ruta para obtener los detalles de la reserva y calificarla
 calificarRouter.get('/:id', async (req, res) => {
   const { id } = req.params;
-
   try {
     const reserva = await calificarModel.getReserva(id);
     res.json(reserva);

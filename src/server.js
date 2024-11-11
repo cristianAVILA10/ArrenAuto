@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Configurar el middleware para interpretar JSON en el cuerpo de las solicitudes
-app.use(express.json());  // <--- Agrega esta línea aquí
+app.use(express.json());
 
 // Configurar la carpeta de archivos estáticos - no modificar
 app.use(express.static(path.join(__dirname, 'cliente')));
@@ -35,8 +35,8 @@ app.get('/', (req, res) => {
 // Rutas para apis
 app.use('/api/usuarios', usuariosRouter);
 app.use('/api/vehiculos', vehiculosRouter);
-app.use('/api/reserva', reservaRouter);      // Ruta para las reservas
-app.use('/api/calificar', calificarRouter);  // Ruta para calificar una reserva
+app.use('/api/reserva', reservaRouter);      
+app.use('/api/calificar', calificarRouter);  
 
 // Iniciar el servidor - no modificar
 app.listen(port, () => {

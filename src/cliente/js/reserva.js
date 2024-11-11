@@ -1,26 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Obtener las reservas desde la API
   fetch('/api/reserva')
     .then(response => {
-      console.log('Response:', response); // Imprime la respuesta completa (Response Object)
+      console.log('Response:', response); // Imprime la respuesta completa
       return response.json(); // Convertir la respuesta a JSON
     })
     .then(reservas => {
-      console.log('Reservas:', reservas); // Verifica que reservas sea un array y tenga más de un elemento
-
+      console.log('Reservas:', reservas); // Array de reservas
       const container = document.getElementById('reservas-container');
-      container.innerHTML = ''; // Limpiar el contenedor de reservas antes de agregar nuevas
+      container.innerHTML = '';
 
       if (Array.isArray(reservas) && reservas.length > 0) {
-        // Iterar sobre las reservas y generar las tarjetas
         reservas.forEach(reserva => {
           console.log(reserva); // Verifica los detalles de cada reserva
-
           const card = document.createElement('div');
           card.classList.add('card', 'mb-3');
           card.style.width = '18rem';
           card.id = `reserva-${reserva.ID_RESERVA}`;
-
           card.innerHTML = `
             <img src="/img/${reserva.IMG_VEHICULO}.jpg" class="card-img-top" alt="Imagen del vehículo" style="height:150px; object-fit:cover;">
             <div class="card-body">
@@ -37,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
 
-          // Mostrar el botón "Cancelar" solo si el estado es "Confirmada"
+          // Mostrar el botón "Cancelar" solo si el estado es "Confirmada" (Estado = 2)
           if (reserva.ESTADO === 'Confirmada') {
             const cancelButton = document.createElement('button');
             cancelButton.textContent = 'Cancelar';
@@ -85,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(`Redirigiendo a /html/calificar.html?id=${reserva.ID_RESERVA}`);
             });
             
-
             const cardFooter = document.createElement('div');
             cardFooter.classList.add('card-footer', 'text-center');
             cardFooter.appendChild(calificarButton);
@@ -94,18 +88,19 @@ document.addEventListener('DOMContentLoaded', () => {
           container.appendChild(card);
         });
       } else {
-        container.innerHTML = "<p>No hay reservas disponibles.</p>";
+        container.innerHTML = "<p>No hay reservas disponibles</p>";
       }
     })
-    .catch(error => console.error('Error al obtener reservas:', error));
+  .catch(error => console.error('Error al obtener reservas:', error));
 });
 
 /**
- * Muestra un diálogo de confirmación antes de cancelar la reserva.
- * @param {number} idReserva - ID de la reserva a cancelar.
- * @param {HTMLElement} card - Elemento de la tarjeta correspondiente.
- * @param {Object} reserva - Objeto de la reserva.
+ * Alerta de diálogo de confirmación antes de cancelar la reserva
+ * @param {number} idReserva - ID de la reserva a cancelar
+ * @param {HTMLElement} card - Elemento de la tarjeta correspondiente
+ * @param {Object} reserva - Objeto de la reserva
  */
+
 function confirmarCancelacion(idReserva, card, reserva) {
   if (confirm("¿Estás seguro de que deseas cancelar esta reserva?")) {
     cancelarReserva(idReserva, card, reserva);
@@ -113,11 +108,12 @@ function confirmarCancelacion(idReserva, card, reserva) {
 }
 
 /**
- * Cancela la reserva con el ID especificado y actualiza la interfaz.
+ * Cancela la reserva con el ID especificado y actualiza la interfaz
  * @param {number} idReserva - ID de la reserva a cancelar.
  * @param {HTMLElement} card - Elemento de la tarjeta correspondiente.
  * @param {Object} reserva - Objeto de la reserva que se está cancelando.
  */
+
 function cancelarReserva(idReserva, card, reserva) {
   fetch(`/api/reserva/${idReserva}/cancelar`, {
     method: 'PUT',
@@ -125,7 +121,7 @@ function cancelarReserva(idReserva, card, reserva) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      estado: 2 // Estado 2 para cancelar
+      estado: 2 // Estado 2 para dejarlo en "Confirmada"
     })
   })
   .then(response => {
@@ -137,7 +133,7 @@ function cancelarReserva(idReserva, card, reserva) {
   .then(updatedReserva => {
     console.log("Reserva actualizada:", updatedReserva);
 
-    // Actualizar el estado de la reserva localmente
+    // Actualizar el estado de la reserva
     const estadoElemento = card.querySelector('.estado-reserva');
     if (estadoElemento) {
       estadoElemento.textContent = 'Pendiente'; // Actualiza el estado en la tarjeta
@@ -150,7 +146,7 @@ function cancelarReserva(idReserva, card, reserva) {
     }
 
     // Mostrar mensaje de éxito
-    alert("Reserva cancelada exitosamente.");
+    alert("Proceso exitoso, reserva pendiente por aprobacion del vendedor");
   })
   .catch(error => {
     console.error('Error al cancelar la reserva:', error);
