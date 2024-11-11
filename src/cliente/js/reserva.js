@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cancelButton.textContent = 'Cancelar';
             cancelButton.classList.add('btn', 'btn-danger', 'w-100');
             cancelButton.addEventListener('click', () => confirmarCancelacion(reserva.ID_RESERVA, card, reserva));
-
             const cardFooter = document.createElement('div');
             cardFooter.classList.add('card-footer', 'text-center');
             cardFooter.appendChild(cancelButton);
             card.appendChild(cardFooter);
-          }else if (reserva.ESTADO === 'Pendiente') {
+
+          } else if (reserva.ESTADO === 'Pendiente') {
             const alert = document.createElement('div');
             alert.textContent = 'Pendiente por aprobacion del vendedor';
             alert.classList.add('alert', 'alert-warning', 'w-100');
@@ -56,30 +56,44 @@ document.addEventListener('DOMContentLoaded', () => {
             cardFooter.classList.add('card-footer', 'text-center');
             cardFooter.appendChild(alert);
             card.appendChild(cardFooter);
-          }
-          else if (reserva.ESTADO === 'Cancelada') {
+
+          } else if (reserva.ESTADO === 'Cancelada') {
             const alert = document.createElement('div');
-            alert.textContent = 'Reserva Cancelada';
+            alert.textContent = 'Reserva cancelada';
             alert.classList.add('alert', 'alert-danger', 'w-100');
             const cardFooter = document.createElement('div');
             cardFooter.classList.add('card-footer', 'text-center');
             cardFooter.appendChild(alert);
             card.appendChild(cardFooter);
-          }
-          else if (reserva.ESTADO === 'Finalizada') {
+
+          } else if (reserva.ESTADO === 'Calificado') {
             const alert = document.createElement('div');
-            alert.textContent = 'Finalizada';
-            alert.classList.add('alert', 'alert-secondary', 'w-100');
+            alert.textContent = 'Finalizada y Calificada';
+            alert.classList.add('alert', 'alert-success', 'w-100');
             const cardFooter = document.createElement('div');
             cardFooter.classList.add('card-footer', 'text-center');
             cardFooter.appendChild(alert);
             card.appendChild(cardFooter);
-          }
 
-          // Agregar la tarjeta al contenedor
+          } else if (reserva.ESTADO === 'Finalizada') {
+            const calificarButton = document.createElement('button');
+            calificarButton.textContent = 'Calificar servicio ★';
+            calificarButton.classList.add('btn', 'btn-secondary', 'w-100');
+            
+            calificarButton.addEventListener('click', () => {
+              window.location.href = `/html/calificar.html?id=${reserva.ID_RESERVA}`;
+              console.log(`Redirigiendo a /html/calificar.html?id=${reserva.ID_RESERVA}`);
+            });
+            
+
+            const cardFooter = document.createElement('div');
+            cardFooter.classList.add('card-footer', 'text-center');
+            cardFooter.appendChild(calificarButton);
+            card.appendChild(cardFooter);
+          }
           container.appendChild(card);
         });
-      }else {
+      } else {
         container.innerHTML = "<p>No hay reservas disponibles.</p>";
       }
     })
