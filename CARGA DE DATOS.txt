@@ -1,0 +1,126 @@
+-- Insertar tipos de usuario
+INSERT INTO TIPO_USUARIO (tipo) VALUES 
+('cliente'), 
+('administrador');
+
+-- Insertar tipos de vehículo
+INSERT INTO TIPO_VEHICULO (tipo) VALUES 
+('SUV'), 
+('sedan'), 
+('camioneta'), 
+('convertible');
+
+-- Insertar estados de vehículo
+INSERT INTO ESTADO_VEHICULO (estado) VALUES 
+('disponible'), 
+('en mantenimiento'), 
+('rentado'), 
+('fuera de servicio');
+
+-- Insertar estados de reserva
+INSERT INTO ESTADO_RESERVA (estado) VALUES 
+('pendiente'), 
+('confirmada'), 
+('cancelada'), 
+('finalizada');
+
+-- Insertar usuarios
+INSERT INTO USUARIO (nombre, apellido, correo, telefono, direccion, usuario, contraseña, id_tip_usuario) VALUES 
+('Juan', 'Pérez', 'juan.perez@example.com', '3001234567', 'Calle 123', 'juanperez', 'password123', 1), 
+('Ana', 'Gómez', 'ana.gomez@example.com', '3002345678', 'Carrera 45', 'anagomez', 'password456', 1), 
+('Luis', 'Martínez', 'luis.martinez@example.com', '3003456789', 'Avenida 78', 'luismartinez', 'password789', 2);
+
+-- Insertar vehículos
+INSERT INTO VEHICULO (marca, modelo, año, id_tip_vehiculo, precio_diario, id_est_vehiculo, descripcion) VALUES 
+('Toyota', 'Corolla', 2021, 2, 100.00, 1, 'Sedan económico y confiable'), 
+('Ford', 'Explorer', 2022, 1, 200.00, 1, 'SUV ideal para viajes familiares'), 
+('Jeep', 'Wrangler', 2020, 3, 250.00, 1, 'Camioneta todoterreno'), 
+('Mazda', 'MX-5', 2021, 4, 150.00, 1, 'Convertible deportivo y compacto');
+
+-- Insertar reservas
+INSERT INTO RESERVA (id_usuario, id_vehiculo, fecha_inicio, fecha_fin, punto_recogida, punto_entrega, id_est_reserva) VALUES 
+(1, 1, '2024-11-15', '2024-11-20', 'Sucursal Centro', 'Sucursal Norte', 1), 
+(1, 2, '2024-11-25', '2024-11-30', 'Sucursal Centro', 'Sucursal Centro', 1), 
+(2, 3, '2024-12-05', '2024-12-10', 'Sucursal Sur', 'Sucursal Centro', 1);
+
+-- Insertar clasificaciones
+INSERT INTO CLASIFICACION (id_reserva, puntuacion, comentario) VALUES 
+(1, 5, 'Excelente experiencia, el vehículo estaba en perfectas condiciones.'), 
+(2, 4, 'Buen servicio, pero el proceso de reserva podría ser más ágil.');
+
+-- Insertar mensajes
+INSERT INTO MENSAJE (id_usuario, asunto, mensaje) VALUES 
+(1, 'Información sobre vehículos', '¿Tienen disponibilidad de SUVs para fin de semana?'), 
+(2, 'Sugerencia', 'Sería bueno tener una opción de pago en línea para agilizar el proceso.');
+
+
+///////////////////////CARGA DE DATOS PARA oracle-- Insertar tipos de usuario
+-- Insertar tipos de usuario
+INSERT INTO TIPO_USUARIO (id_tip_usuario, tipo) VALUES (SEQ_TIPO_USUARIO.NEXTVAL, 'cliente');
+INSERT INTO TIPO_USUARIO (id_tip_usuario, tipo) VALUES (SEQ_TIPO_USUARIO.NEXTVAL, 'administrador');
+
+-- Insertar tipos de vehículo
+INSERT INTO TIPO_VEHICULO (id_tip_vehiculo, tipo) VALUES (SEQ_TIPO_VEHICULO.NEXTVAL, 'SUV');
+INSERT INTO TIPO_VEHICULO (id_tip_vehiculo, tipo) VALUES (SEQ_TIPO_VEHICULO.NEXTVAL, 'sedan');
+INSERT INTO TIPO_VEHICULO (id_tip_vehiculo, tipo) VALUES (SEQ_TIPO_VEHICULO.NEXTVAL, 'camioneta');
+INSERT INTO TIPO_VEHICULO (id_tip_vehiculo, tipo) VALUES (SEQ_TIPO_VEHICULO.NEXTVAL, 'convertible');
+
+-- Insertar estados de vehículo
+INSERT INTO ESTADO_VEHICULO (id_est_vehiculo, estado) VALUES (SEQ_ESTADO_VEHICULO.NEXTVAL, 'disponible');
+INSERT INTO ESTADO_VEHICULO (id_est_vehiculo, estado) VALUES (SEQ_ESTADO_VEHICULO.NEXTVAL, 'en mantenimiento');
+INSERT INTO ESTADO_VEHICULO (id_est_vehiculo, estado) VALUES (SEQ_ESTADO_VEHICULO.NEXTVAL, 'rentado');
+INSERT INTO ESTADO_VEHICULO (id_est_vehiculo, estado) VALUES (SEQ_ESTADO_VEHICULO.NEXTVAL, 'fuera de servicio');
+
+-- Insertar estados de reserva
+INSERT INTO ESTADO_RESERVA (id_est_reserva, estado) VALUES (SEQ_ESTADO_RESERVA.NEXTVAL, 'pendiente');
+INSERT INTO ESTADO_RESERVA (id_est_reserva, estado) VALUES (SEQ_ESTADO_RESERVA.NEXTVAL, 'confirmada');
+INSERT INTO ESTADO_RESERVA (id_est_reserva, estado) VALUES (SEQ_ESTADO_RESERVA.NEXTVAL, 'cancelada');
+INSERT INTO ESTADO_RESERVA (id_est_reserva, estado) VALUES (SEQ_ESTADO_RESERVA.NEXTVAL, 'finalizada');
+
+-- Insertar usuarios
+INSERT INTO USUARIO (id_usuario, nombre, apellido, correo, telefono, direccion, usuario, contraseña, id_tip_usuario, fecha_registro) 
+VALUES (SEQ_USUARIO.NEXTVAL, 'Juan', 'Pérez', 'juan.perez@example.com', '3001234567', 'Calle 123', 'juanperez', 'password123', 1, SYSTIMESTAMP);
+
+INSERT INTO USUARIO (id_usuario, nombre, apellido, correo, telefono, direccion, usuario, contraseña, id_tip_usuario, fecha_registro) 
+VALUES (SEQ_USUARIO.NEXTVAL, 'Ana', 'Gómez', 'ana.gomez@example.com', '3002345678', 'Carrera 45', 'anagomez', 'password456', 1, SYSTIMESTAMP);
+
+INSERT INTO USUARIO (id_usuario, nombre, apellido, correo, telefono, direccion, usuario, contraseña, id_tip_usuario, fecha_registro) 
+VALUES (SEQ_USUARIO.NEXTVAL, 'Luis', 'Martínez', 'luis.martinez@example.com', '3003456789', 'Avenida 78', 'luismartinez', 'password789', 2, SYSTIMESTAMP);
+
+-- Insertar vehículos
+INSERT INTO VEHICULO (id_vehiculo, marca, modelo, año, id_tip_vehiculo, precio_diario, id_est_vehiculo, descripcion) 
+VALUES (SEQ_VEHICULO.NEXTVAL, 'Toyota', 'Corolla', 2021, 2, 100.00, 1, 'Sedan económico y confiable');
+
+INSERT INTO VEHICULO (id_vehiculo, marca, modelo, año, id_tip_vehiculo, precio_diario, id_est_vehiculo, descripcion) 
+VALUES (SEQ_VEHICULO.NEXTVAL, 'Ford', 'Explorer', 2022, 1, 200.00, 1, 'SUV ideal para viajes familiares');
+
+INSERT INTO VEHICULO (id_vehiculo, marca, modelo, año, id_tip_vehiculo, precio_diario, id_est_vehiculo, descripcion) 
+VALUES (SEQ_VEHICULO.NEXTVAL, 'Jeep', 'Wrangler', 2020, 3, 250.00, 1, 'Camioneta todoterreno');
+
+INSERT INTO VEHICULO (id_vehiculo, marca, modelo, año, id_tip_vehiculo, precio_diario, id_est_vehiculo, descripcion) 
+VALUES (SEQ_VEHICULO.NEXTVAL, 'Mazda', 'MX-5', 2021, 4, 150.00, 1, 'Convertible deportivo y compacto');
+
+-- Insertar reservas
+INSERT INTO RESERVA (id_reserva, id_usuario, id_vehiculo, fecha_reserva, fecha_inicio, fecha_fin, punto_recogida, punto_entrega, id_est_reserva) 
+VALUES (SEQ_RESERVA.NEXTVAL, 1, 1, SYSTIMESTAMP, TO_DATE('2024-11-15', 'YYYY-MM-DD'), TO_DATE('2024-11-20', 'YYYY-MM-DD'), 'Sucursal Centro', 'Sucursal Norte', 1);
+
+INSERT INTO RESERVA (id_reserva, id_usuario, id_vehiculo, fecha_reserva, fecha_inicio, fecha_fin, punto_recogida, punto_entrega, id_est_reserva) 
+VALUES (SEQ_RESERVA.NEXTVAL, 1, 2, SYSTIMESTAMP, TO_DATE('2024-11-25', 'YYYY-MM-DD'), TO_DATE('2024-11-30', 'YYYY-MM-DD'), 'Sucursal Centro', 'Sucursal Centro', 1);
+
+INSERT INTO RESERVA (id_reserva, id_usuario, id_vehiculo, fecha_reserva, fecha_inicio, fecha_fin, punto_recogida, punto_entrega, id_est_reserva) 
+VALUES (SEQ_RESERVA.NEXTVAL, 2, 3, SYSTIMESTAMP, TO_DATE('2024-12-05', 'YYYY-MM-DD'), TO_DATE('2024-12-10', 'YYYY-MM-DD'), 'Sucursal Sur', 'Sucursal Centro', 1);
+
+-- Insertar clasificaciones
+INSERT INTO CLASIFICACION (id_clasificacion, id_reserva, puntuacion, comentario, fecha) 
+VALUES (SEQ_CLASIFICACION.NEXTVAL, 1, 5, 'Excelente experiencia, el vehículo estaba en perfectas condiciones.', SYSTIMESTAMP);
+
+INSERT INTO CLASIFICACION (id_clasificacion, id_reserva, puntuacion, comentario, fecha) 
+VALUES (SEQ_CLASIFICACION.NEXTVAL, 2, 4, 'Buen servicio, pero el proceso de reserva podría ser más ágil.', SYSTIMESTAMP);
+
+-- Insertar mensajes
+INSERT INTO MENSAJE (id_mensaje, id_usuario, asunto, mensaje, fecha, leido) 
+VALUES (SEQ_MENSAJE.NEXTVAL, 1, 'Información sobre vehículos', '¿Tienen disponibilidad de SUVs para fin de semana?', SYSTIMESTAMP, 0);
+
+INSERT INTO MENSAJE (id_mensaje, id_usuario, asunto, mensaje, fecha, leido) 
+VALUES (SEQ_MENSAJE.NEXTVAL, 2, 'Sugerencia', 'Sería bueno tener una opción de pago en línea para agilizar el proceso.', SYSTIMESTAMP, 0);
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/vehiculos.css">
+    <style>
+        /* Estilos para centrar y darle forma a la pantalla */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Imagen del vehículo */
+        .vehicle {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Área de texto para la reseña */
+        .review-box {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        /* Calificación en estrellas */
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* Estilo de las estrellas */
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulario de Reseña</h2>
+        
+        <div class="vehicle">Vehículo</div>
+        
+        <label for="review">Reseña</label>
+        <textarea id="review" class="review-box" placeholder="Escribe tu reseña aquí..."></textarea>
+        
+        <label for="rating">Calificación</label>
+        <div class="stars">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para el cambio de color de las estrellas
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => {
+                    s.style.color = i <= index ? 'orange' : 'black';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Mensaje</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/mensajes.css">
+</head>
+<body>
+    <div class="container d-flex align-items-center min-vh-100">
+        <div class="row align-items-center w-100">
+            <div class="col-md-6 text-center">
+                <img src="../../img/msj.webp" alt="Imagen Mensaje" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-md-6">
+                <div class="form-container p-4 bg-light rounded shadow">
+                    <h1 class="text-center mb-4">Enviar Mensaje</h1>
+                    <form id="messageForm" novalidate>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Asunto</label>
+                            <select class="form-select form-control" id="subject" required>
+                                <option value="" disabled selected>Seleccionar asunto</option>
+                                <option value="obtenerInformacion">Obtener información</option>
+                                <option value="hacerSugerencias">Hacer sugerencias</option>
+                                <option value="felicitaciones">Felicitaciones</option>
+                                <option value="expresarGratitud">Expresar gratitud</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor, selecciona un asunto.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                            <div class="invalid-feedback">El mensaje no puede estar vacío.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Enviar</button>
+                    </form>
+                    <div id="result" class="mt-3 alert alert-success d-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/mensajes.js"></script>
+</body>
+</html>
