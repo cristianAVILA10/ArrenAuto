@@ -1,0 +1,21 @@
+.notificacion-exito {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.notificacion-error {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}

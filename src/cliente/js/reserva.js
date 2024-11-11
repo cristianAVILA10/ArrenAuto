@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/api/reserva')
+  fetch(`/api/reserva/${getIdUsuario()}`)
     .then(response => {
       console.log('Response:', response); // Imprime la respuesta completa
       return response.json(); // Convertir la respuesta a JSON
@@ -152,4 +152,8 @@ function cancelarReserva(idReserva, card, reserva) {
     console.error('Error al cancelar la reserva:', error);
     alert("Ocurrió un error al intentar cancelar la reserva.");
   });
+}
+
+function getIdUsuario() {
+  return localStorage.getItem("id_usuario");
 }

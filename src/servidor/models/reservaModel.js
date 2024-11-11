@@ -2,8 +2,11 @@ const oracledb = require('oracledb');
 const db = require('../db');
 
 // Obtener las reservas
-async function getReserva(callback) {
+async function getReserva(id_usuario, callback) {
   try {
+
+    console.log('pasa 1');
+    
     const connection = await db(); // Esto asume que `db` es una función asíncrona que devuelve la conexión
     const query = `
       SELECT id_reserva, modelo, fecha_reserva, fecha_inicio, fecha_fin, 
@@ -11,8 +14,10 @@ async function getReserva(callback) {
       FROM reserva a 
       INNER JOIN vehiculo b ON a.id_vehiculo = b.id_vehiculo 
       INNER JOIN estado_reserva c ON c.id_est_reserva = a.id_est_reserva
+      where a.id_usuario = :id_usuario
     `;
-    const result = await connection.execute(query, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    console.log('pasa 2: ' +id_usuario );
+    const result = await connection.execute(query, [id_usuario], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     await connection.close();
     callback(null, result.rows);
 

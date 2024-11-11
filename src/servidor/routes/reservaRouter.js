@@ -3,8 +3,10 @@ const router = express.Router();
 const Reserva = require('../models/reservaModel');
 
 // Ruta para obtener todos los usuarios
-router.get('/', (req, res) => {
-  Reserva.getReserva((err, reserva) => {
+router.get('/:id_usuario', (req, res) => {
+
+  const id_usuario = req.params.id_usuario;
+  Reserva.getReserva(id_usuario, (err, reserva) => {
     if (err) {
       return res.status(500).json({ message: 'Error al obtener la reserva' });
     }

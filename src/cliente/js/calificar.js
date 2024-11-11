@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <strong>Punto de Recogida:</strong> ${reserva.PUNTO_RECOGIDA} <br>
       <strong>Punto de Entrega:</strong> ${reserva.PUNTO_ENTREGA} <br>
     `;
-    document.querySelector('.contenedor_calificacion p').innerHTML = detallesReserva;
+    document.querySelector('#reservation-details').innerHTML = detallesReserva;
   })
   .catch(error => {
     console.error('Error al obtener los datos de la reserva:', error);

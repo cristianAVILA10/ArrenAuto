@@ -7,6 +7,7 @@ const usuariosRouter = require('./servidor/routes/usuariosRouter');
 const vehiculosRouter = require('./servidor/routes/vehiculosRouter');
 const reservaRouter = require('./servidor/routes/reservaRouter');
 const calificarRouter = require('./servidor/routes/calificarRouter');
+const mensajesRouter = require('./servidor/routes/mensajesRouter');
 const path = require('path');
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api/usuarios', usuariosRouter);
 app.use('/api/vehiculos', vehiculosRouter);
 app.use('/api/reserva', reservaRouter);      
 app.use('/api/calificar', calificarRouter);  
+app.use('/api/mensajes', mensajesRouter);
 
 // Iniciar el servidor - no modificar
 app.listen(port, () => {
