@@ -9,7 +9,7 @@ body {
 
 .container {
     width: 80%;
-    padding: 30px;
+    padding: 20px;
     border: 1px solid black;
     border-radius: 10px;
     display: flex;
@@ -76,4 +76,9 @@ h2{
     cursor: pointer;
     color: rgba(82, 82, 82, 0.658);
 }
+
+.star.selected {
+    color: gold; 
+  }
+  
 
