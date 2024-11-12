@@ -1,18 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const Vehiculo = require('../models/vehiculosModel'); // Asegúrate de que este archivo existe y tiene la función `getVehiculos`
+const Vehiculo = require('../models/vehiculosModel');
 
-// Ruta para obtener todos los vehículos
+
 router.get('/', (req, res) => {
-  // Realizamos la consulta a la base de datos para obtener todos los vehículos
-  Vehiculo.getVehiculos((err, vehiculos) => {
+  const {  marca } = req.query;
+  
+  Vehiculo.getVehiculos( marca, (err, vehiculos) => {
     if (err) {
-      return res.status(500).json({ message: 'Error al obtener vehículos', error: err });
+      return res.status(500).json({ message: 'Error al obtener vehículos 1', error: err });
     }
-
-    // Devolver los vehículos en formato JSON
     res.json(vehiculos);
   });
+});
+
+
+
+
+router.post('/reservar', async (req, res) => {
+  const reservaData = req.body;
+
+  try {
+    await Vehiculo.crearReserva(reservaData);
+    res.json({ message: 'Reserva realizada con éxito y estado del vehículo actualizado.' });
+  } catch (err) {
+    console.error('Error al reservar el vehículo:', err);
+    res.status(500).json({ message: 'Error al reservar el vehículo.', error: err });
+  }
 });
 
 module.exports = router;
